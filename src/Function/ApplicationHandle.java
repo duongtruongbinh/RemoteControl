@@ -1,4 +1,4 @@
-package Funtion;
+package Function;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,7 +8,8 @@ public class ApplicationHandle {
         StringBuilder sb = new StringBuilder();
         try {
 //            Run command and print to the console
-            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Get-Process", "|where {$_.MainWindowTitle }", "|select ProcessName,Id,Description");
+            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Get-Process", "|where {$_.MainWindowTitle }",
+                    "|select ProcessName,Id,Description");
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(pb.start().getInputStream()));
             String s;
             while ((s = stdInput.readLine()) != null) {
@@ -26,20 +27,31 @@ public class ApplicationHandle {
         return sb.toString();
     }
 
-    public static void KillApp(int processPID) {
+    public static boolean KillApp(int processPID) {
         try {
 //            Run command and print to the console
             ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Stop-Process", "-Id", Integer.toString(processPID));
             pb.start();
 //            Check if the process still running
-            String listProcess = GetApplication();
-            if (listProcess.contains(Integer.toString(processPID))) {
-                System.out.println("Application still running");
-            } else {
-                System.out.println("Application killed");
-            }
+            String listApplication = GetApplication();
+            return !listApplication.contains(Integer.toString(processPID));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    public static boolean StartApp(String appName) {
+        try {
+//            Run command and print to the console
+            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Start-Process", "-FilePath", appName);
+            pb.start();
+//            Check if process is run or not
+            String listApplication = GetApplication();
+            return listApplication.contains(appName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

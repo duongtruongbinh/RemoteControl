@@ -1,4 +1,4 @@
-package Funtion;
+package Function;
 
 public class ComputerControl {
     public static void ShutDown(){
@@ -9,7 +9,6 @@ public class ComputerControl {
             e.printStackTrace();
         }
     }
-
     public static void ReStart(){
         try {
             ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Restart-Computer", "-Force");
@@ -18,6 +17,4 @@ public class ComputerControl {
             e.printStackTrace();
         }
     }
-
-
 }

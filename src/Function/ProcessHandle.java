@@ -1,4 +1,4 @@
-package Funtion;
+package Function;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,20 +26,32 @@ public class ProcessHandle {
         return sb.toString();
     }
 
-    public static void KillProcess(int processPID) {
+    public static boolean KillProcess(int processPID) {
         try {
 //            Run command and print to the console
             ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Stop-Process", "-Id", Integer.toString(processPID));
             pb.start();
 //            Check if the process still running
             String listProcess = GetProcess();
-            if (listProcess.contains(Integer.toString(processPID))) {
-                System.out.println("Process still running");
-            } else {
-                System.out.println("Process killed");
-            }
+            return !listProcess.contains(Integer.toString(processPID));
+        } catch (
+                Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean StartProcess(String processName) {
+        try {
+//            Run command and print to the console
+            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Start-Process", "-FilePath", processName);
+            pb.start();
+//            Check if process is run or not
+            String listProcess = GetProcess();
+            return listProcess.contains(processName);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

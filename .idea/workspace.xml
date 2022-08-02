@@ -4,18 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1458b0b3-17e5-44ae-881c-882a05ad8803" name="Changes" comment="">
+    <list default="true" id="1458b0b3-17e5-44ae-881c-882a05ad8803" name="Changes" comment="Make functions 1, 2, 5">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Funtion/ApplicationHandle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Funtion/ComputerControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Funtion/ProcessHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/ABC.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/ABC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/MainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/StartPAMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/SwitchButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/SwitchEvenList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funtion/ApplicationHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ApplicationHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funtion/ComputerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ComputerControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funtion/ProcessHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ProcessHandle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,29 +60,49 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="GUI" />
       <recent name="Funtion" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Study\CPP\HK3\MMT\RemoteControl\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationHandle">
-    <configuration name="ApplicationHandle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Funtion.ApplicationHandle" />
+  <component name="RunManager" selected="Application.MainMenu">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Client.Client" />
+      <module name="RemoteControl" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.MainMenu" />
+      <module name="RemoteControl" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Popup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.Popup" />
       <module name="RemoteControl" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="ProcessHandle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Funtion.ProcessHandle" />
+      <option name="MAIN_CLASS_NAME" value="Function.ProcessHandle" />
       <module name="RemoteControl" />
       <extension name="coverage">
         <pattern>
@@ -85,10 +114,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StartPAMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.StartPAMenu" />
+      <module name="RemoteControl" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApplicationHandle" />
-        <item itemvalue="Application.ProcessHandle" />
+        <item itemvalue="Application.MainMenu" />
+        <item itemvalue="Application.StartPAMenu" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Popup" />
       </list>
     </recent_temporary>
   </component>
@@ -102,6 +140,14 @@
       <updated>1658908761255</updated>
       <workItem from="1658908763176" duration="584000" />
     </task>
+    <task id="LOCAL-00001" summary="Make functions 1, 2, 5">
+      <created>1659027262356</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659027262356</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +163,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Make functions 1, 2, 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make functions 1, 2, 5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
