@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1458b0b3-17e5-44ae-881c-882a05ad8803" name="Changes" comment="Make functions 1, 2, 5">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/ABC.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/ABC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/MainMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/StartPAMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/SwitchButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/SwitchEvenList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Function/KeyLogger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Function/Screenshot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Funtion/ApplicationHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ApplicationHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Funtion/ComputerControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ComputerControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Funtion/ProcessHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Function/ProcessHandle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,30 +43,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/HP/Downloads/jnativehook-2.2.2.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="GUI" />
       <recent name="Funtion" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\IdeaProjects\RemoteControl\src\Function" />
       <recent name="C:\Study\CPP\HK3\MMT\RemoteControl\src" />
     </key>
   </component>
@@ -121,6 +114,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MainMenu" />
+      <item itemvalue="Application.Popup" />
+      <item itemvalue="Application.ProcessHandle" />
+      <item itemvalue="Application.StartPAMenu" />
+      <item itemvalue="Application.Client" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainMenu" />
