@@ -40,18 +40,4 @@ public class ApplicationHandle {
         }
         return false;
     }
-
-    public static boolean StartApp(String appName) {
-        try {
-//            Run command and print to the console
-            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Start-Process", "-FilePath", appName);
-            pb.start();
-//            Check if process is run or not
-            String listApplication = GetApplication();
-            return listApplication.contains(appName);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 }

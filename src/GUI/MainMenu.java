@@ -1,5 +1,7 @@
 package GUI;
 
+import Function.ComputerControl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +19,19 @@ public class MainMenu {
         jFrame.setMinimumSize(new Dimension(500, 300));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
+
+//        Set theme for the JFrame
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                try {
+                    UIManager.setLookAndFeel(info.getClassName());
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                         UnsupportedLookAndFeelException e) {
+                    break;
+                }
+                break;
+            }
+        }
 
         JPanel ipPanel = new JPanel();
         JLabel IpLabel = new JLabel("IP: ");
@@ -79,21 +94,23 @@ public class MainMenu {
 
         jFrame.add(functionPanel, BorderLayout.CENTER);
 
+
+        jFrame.setLocation(500, 300);
         jFrame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
 //        TODO: Implement this method with function to used to start/stop/screenshot/get key press/shut down
         if (e.getSource() == startPA) {
-            System.out.println("Stop Process/Application");
+            SwingUtilities.invokeLater(StartPAMenu::new);
         } else if (e.getSource() == stopPA) {
             SwingUtilities.invokeLater(StopPAMenu::new);
         } else if (e.getSource() == scrShot) {
             System.out.println("Take a Screenshot");
         } else if (e.getSource() == getKeyPress) {
-            System.out.println("Get Key Press");
+            SwingUtilities.invokeLater(KeyloggerMenu::new);
         } else if (e.getSource() == shutDown) {
-            System.out.println("Shut Down");
+            ComputerControl.ShutDown();
         }
     }
 

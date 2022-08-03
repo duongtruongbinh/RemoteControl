@@ -15,7 +15,7 @@ public class StopPAMenu {
     private JTextField pidText;
 
     public StopPAMenu() {
-        jFrame = new JFrame("Start Process/Application");
+        jFrame = new JFrame("Stop Process/Application");
         jFrame.setMinimumSize(new Dimension(500, 400));
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());

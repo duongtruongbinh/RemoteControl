@@ -78,12 +78,11 @@ public class ProcessHandle {
 
     public static void main(String[] args) {
 //        System.out.println(StartProcess("C:\\Program Files` (x86)\\Steam\\steam.exe"));
-////        System.out.println(StartProcess("C:\\Games\\Gunfire Reborn\\Gunfire Reborn.exe"));
-////        System.out.println(StartProcess("C:\\GOG Games\\Nova Drift\\NovaDrift.exe"));
-////        System.out.println(StartProcess("C:\\Games\\Despot’s Game Dystopian Army Builder\\Despot's Game.exe"));
-////        System.out.println(StartProcess("C:\\Garena\\Games\\32787\\LeagueClient\\LeagueClient.exe"));
-////        System.out.println(StartProcess("notepad.exe"));
-//        System.out.println(StartProcess("C:\\GOG Games\\The Slormancer\\The Slormancer.exe"));
-
+//        System.out.println(StartProcess("C:\\Games\\Gunfire Reborn\\Gunfire Reborn.exe"));
+//        System.out.println(StartProcess("C:\\GOG Games\\Nova Drift\\NovaDrift.exe"));
+//        System.out.println(StartProcess("C:\\Games\\Despot’s Game Dystopian Army Builder\\Despot's Game.exe"));
+//        System.out.println(StartProcess("C:\\Garena\\Games\\32787\\LeagueClient\\LeagueClient.exe"));
+//        System.out.println(StartProcess("notepad.exe"));
+        System.out.println(StartProcess("C:\\GOG Games\\The Slormancer\\The Slormancer.exe"));
     }
 }
