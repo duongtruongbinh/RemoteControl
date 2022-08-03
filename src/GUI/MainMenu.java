@@ -85,9 +85,9 @@ public class MainMenu {
     public void actionPerformed(ActionEvent e) {
 //        TODO: Implement this method with function to used to start/stop/screenshot/get key press/shut down
         if (e.getSource() == startPA) {
-            SwingUtilities.invokeLater(StartPAMenu::new);
-        } else if (e.getSource() == stopPA) {
             System.out.println("Stop Process/Application");
+        } else if (e.getSource() == stopPA) {
+            SwingUtilities.invokeLater(StopPAMenu::new);
         } else if (e.getSource() == scrShot) {
             System.out.println("Take a Screenshot");
         } else if (e.getSource() == getKeyPress) {
