@@ -1,18 +1,20 @@
 package GUI;
 
-import Function.ProcessHandle;
+import Client.RecvSend;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.Socket;
 
-public class StartPAMenu {
+public class StartPAMenu implements RecvSend {
     private JFrame jFrame;
     private JTextField pathText;
     private JButton startPrs;
     private JButton browseFile;
+    private Socket connect;
 
-    public StartPAMenu(){
+    public StartPAMenu(String host) {
         jFrame = new JFrame("Start Process/Application");
         jFrame.setMinimumSize(new Dimension(500, 300));
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,6 +45,24 @@ public class StartPAMenu {
         jFrame.setLocation(dim.width / 2 - jFrame.getSize().width / 2, dim.height / 2 - jFrame.getSize().height / 2);
         jFrame.add(pathPanel, BorderLayout.CENTER);
 
+        try {
+            connect = new Socket(host, 6001);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Can't connect to server", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                try {
+                    RecvSend.sendMess(connect, "Stop");
+                    connect.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         jFrame.setVisible(true);
     }
 
@@ -51,10 +71,25 @@ public class StartPAMenu {
             String path = pathText.getText();
 //            Check if path is an executable file
             if (path.toLowerCase().endsWith(".exe")) {
-                ProcessHandle.StartProcess(path);
-            } else {
-                JOptionPane.showMessageDialog(new JFrame(), "This is not a executable file!", "Error", JOptionPane.ERROR_MESSAGE);
+                RecvSend.sendMess(connect, path);
             }
+
+            label:
+            while (true) {
+                String mess = RecvSend.receiveMess(connect);
+                switch (mess) {
+                    case "Success" -> {
+                        JOptionPane.showMessageDialog(null, "Process started", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        break label;
+                    }
+                    case "Fail" -> {
+                        JOptionPane.showMessageDialog(null, "Process failed to start", "Error", JOptionPane.ERROR_MESSAGE);
+                        break label;
+                    }
+                }
+            }
+
+            pathText.setText("");
         } else if (e.getSource() == browseFile) {
             Frame fileFrame = new Frame();
             FileDialog fd = new FileDialog(fileFrame, "Select File", FileDialog.LOAD);
@@ -66,9 +101,5 @@ public class StartPAMenu {
 
             fileFrame.dispose();
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(StartPAMenu::new);
     }
 }

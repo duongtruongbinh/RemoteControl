@@ -20,6 +20,8 @@ public class Server implements SendRecv {
         option = SendRecv.receiveMess(connectionSocket);
         while (!option.equals("Exit")) {
             if (option.equals("Start")) {
+                Thread startPA = new Thread(new HandleStartPAMenu());
+                startPA.start();
             }
             if (option.equals("Kill")) {
 //                Call Server.KillPA in other threat

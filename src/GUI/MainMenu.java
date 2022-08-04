@@ -55,9 +55,9 @@ public class MainMenu {
                             client.close();
                             client = null;
                         }
+                        switchButton.Released(e);
                     }
                 }
-                switchButton.Released(e);
             }
         });
 
@@ -127,7 +127,8 @@ public class MainMenu {
 //        TODO: Implement this method with function to used to start/stop/screenshot/get key press/shut down
         if (e.getSource() == startPA) {
             if (client != null) {
-                SwingUtilities.invokeLater(StartPAMenu::new);
+                client.sendMess("Start");
+                SwingUtilities.invokeLater(() -> new StartPAMenu(IpText.getText()));
             }
         } else if (e.getSource() == stopPA) {
             if (client != null) {

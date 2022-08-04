@@ -11,7 +11,7 @@ public class HandleStopPAMenu implements Runnable, SendRecv {
     public void run() {
         ServerSocket ss;
         try {
-            ss = new ServerSocket(6001);
+            ss = new ServerSocket(6002);
             Socket s = ss.accept();
 
             String option;

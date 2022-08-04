@@ -54,7 +54,7 @@ public class StopPAMenu implements RecvSend {
         jFrame.setLocation(dim.width / 2 - jFrame.getSize().width / 2, dim.height / 2 - jFrame.getSize().height / 2);
 
         try {
-            connect = new Socket(host, 6001);
+            connect = new Socket(host, 6002);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can't connect to server", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -70,6 +70,7 @@ public class StopPAMenu implements RecvSend {
                 }
             }
         });
+
         jFrame.setVisible(true);
     }
 

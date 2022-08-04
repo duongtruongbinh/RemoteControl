@@ -15,9 +15,8 @@ public interface SendRecv {
                 dataSize = fromClient.read(chunk);
                 String temp = new String(chunk);
                 dataQueue.append(temp);
+                System.out.println(dataQueue);
             } while (dataSize >= 1024 * 10);
-
-
         } catch (Exception e) {
             System.out.println(("Error " + e));
         }
@@ -29,7 +28,7 @@ public interface SendRecv {
             DataOutputStream toServer = new DataOutputStream(connect.getOutputStream());
             toServer.writeBytes("<mess>" + mess + "</mess>");
         } catch (Exception e) {
-            System.out.println(("Error " + e));
+            System.out.println(("Error sendMess" + e));
         }
     }
 

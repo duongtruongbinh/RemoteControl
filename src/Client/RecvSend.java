@@ -20,14 +20,13 @@ public interface RecvSend {
         try {
             byte[] chunk = new byte[1024 * 10];
             int dataSize;
-            DataInputStream fromClient = new DataInputStream(connect.getInputStream());
+            DataInputStream fromServer = new DataInputStream(connect.getInputStream());
             do {
-                dataSize = fromClient.read(chunk);
+                dataSize = fromServer.read(chunk);
                 String temp = new String(chunk);
                 dataQueue.append(temp);
+                System.out.println(dataQueue);
             } while (dataSize >= 1024 * 10);
-
-
         } catch (Exception e) {
             System.out.println(("Error " + e));
         }
@@ -40,7 +39,7 @@ public interface RecvSend {
             toServer.writeBytes("<mess>" + mess + "</mess>");
 
         } catch (Exception e) {
-            System.out.println(("Error " + e));
+            System.out.println(("Error sendMess" + e));
         }
 
     }
