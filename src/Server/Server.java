@@ -1,95 +1,38 @@
 package Server;
 
-import Function.KeyLogger;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import javax.swing.*;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
-    public static void main(String[] args) throws Exception {
+public class Server implements SendRecv {
+    public static void main(String[] args) {
         String option;
-        String data;
+        Socket connectionSocket = null;
 
-        BufferedReader inFromUser =
-                new BufferedReader(new InputStreamReader(System.in));
-        Socket connectionSocket;
         try (ServerSocket welcomeSocket = new ServerSocket(6543)) {
             connectionSocket = welcomeSocket.accept();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            System.exit(0);
         }
-        
 
-
-        DataOutputStream outToServer =
-                new DataOutputStream(connectionSocket.getOutputStream());
-
-
-        BufferedReader inFromServer =
-                new BufferedReader(new
-                        InputStreamReader(connectionSocket.getInputStream()));
-        do {
-            option = receiveMess(connectionSocket);
-            System.out.println("Client: " + option);
-            switch (option) {
-                case "keylogger":
-                    KeyLogger.main();
-                    break;//do option
-                case "screenshot":
-                    //Screenshot.main();
-                    break;
+        option = SendRecv.receiveMess(connectionSocket);
+        while (!option.equals("Exit")) {
+            if (option.equals("Start")) {
             }
-
-
-            sendMess(connectionSocket, "done");
-
-
-        } while (!option.equals("exit"));
-        connectionSocket.close();
-    }
-
-    public static String dequeue(StringBuilder dataQueue) {
-        String temp = new String(dataQueue);
-        int pos = temp.lastIndexOf('<');
-        temp = temp.substring(0, pos);
-
-        pos = temp.lastIndexOf('>');
-        temp = temp.substring(pos + 1);
-        return temp;
-    }
-
-    public static void sendMess(Socket connect, String mess) {
-
-        try {
-            DataOutputStream toServer = new DataOutputStream(connect.getOutputStream());
-            String temp = "<mess>" + mess + "</mess>";
-            toServer.writeBytes(temp);
-
-        } catch (Exception e) {
-            System.out.println(("Error " + e));
+            if (option.equals("Kill")) {
+//                Call Server.KillPA in other threat
+                Thread killPA = new Thread(new HandleStopPAMenu());
+                killPA.start();
+            }
+            option = SendRecv.receiveMess(connectionSocket);
         }
 
-    }
-
-    public static String receiveMess(Socket connect) {
-        StringBuilder dataQueue = new StringBuilder();
         try {
-            byte[] chunk = new byte[1024];
-
-            int dataSize;
-            DataInputStream fromClient = new DataInputStream(connect.getInputStream());
-            do {
-                dataSize = fromClient.read(chunk, 0, 1024);
-                String temp = new String(chunk);
-                dataQueue.append(temp);
-            } while (dataSize >= 1024);
-
-
-        } catch (Exception e) {
-            System.out.println(("Error " + e));
+            connectionSocket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return dequeue(dataQueue);
     }
 }

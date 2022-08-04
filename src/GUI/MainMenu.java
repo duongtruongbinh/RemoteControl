@@ -44,17 +44,20 @@ public class MainMenu {
         switchButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                String host = IpText.getText();
-                if (host.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Please enter IP address", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    if (client == null) {
-                        client = new Client(host);
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    String host = IpText.getText();
+                    if (host.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Please enter IP address", "Error", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        client.disconnect();
-                        client = null;
+                        if (client == null) {
+                            client = new Client(host);
+                        } else {
+                            client.close();
+                            client = null;
+                        }
                     }
                 }
+                switchButton.Released(e);
             }
         });
 
@@ -128,7 +131,8 @@ public class MainMenu {
             }
         } else if (e.getSource() == stopPA) {
             if (client != null) {
-                SwingUtilities.invokeLater(StopPAMenu::new);
+                client.sendMess("Kill");
+                SwingUtilities.invokeLater(() -> new StopPAMenu(IpText.getText()));
             }
         } else if (e.getSource() == scrShot) {
             if (client != null) {

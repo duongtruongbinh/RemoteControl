@@ -1,11 +1,11 @@
 package Client;
 
+import Server.SendRecv;
+
 import javax.swing.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.net.Socket;
 
-public class Client {
+public class Client implements SendRecv {
 //    public static void main(String[] argv) throws Exception {
 //        String option;
 //        String data;
@@ -47,53 +47,29 @@ public class Client {
         }
     }
 
-    public static String dequeue(StringBuilder dataQueue) {
-        String temp = new String(dataQueue);
-        int pos = temp.lastIndexOf('<');
-        temp = temp.substring(0, pos);
-
-        pos = temp.lastIndexOf('>');
-        temp = temp.substring(pos + 1);
-        return temp;
-    }
-
-    public static String receiveMess(Socket connect) {
-        StringBuilder dataQueue = new StringBuilder();
+    public void sendMess(String message) {
         try {
-            byte[] chunk = new byte[1024];
-            int dataSize;
-            DataInputStream fromClient = new DataInputStream(connect.getInputStream());
-            do {
-                dataSize = fromClient.read(chunk);
-                String temp = new String(chunk);
-                dataQueue.append(temp);
-            } while (dataSize >= 1024);
-
-
+            SendRecv.sendMess(clientSocket, message);
         } catch (Exception e) {
-            System.out.println(("Error " + e));
+            System.out.println("Error: " + e.getMessage());
         }
-        return dequeue(dataQueue);
     }
 
-    public void disconnect() {
+    public String receiveMess() {
+        try {
+            return SendRecv.receiveMess(clientSocket);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return "";
+        }
+    }
+
+    public void close() {
         try {
             clientSocket.close();
         } catch (Exception e) {
-            System.out.println(("Error " + e));
+            System.out.println("Error: " + e.getMessage());
         }
-    }
-
-    public static void sendMess(Socket connect, String mess) {
-
-        try {
-            DataOutputStream toServer = new DataOutputStream(connect.getOutputStream());
-            toServer.writeBytes("<mess>" + mess + "</mess>");
-
-        } catch (Exception e) {
-            System.out.println(("Error " + e));
-        }
-
     }
 }
 

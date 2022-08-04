@@ -54,6 +54,7 @@ public class KeyloggerMenu implements NativeKeyListener {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         jFrame.setLocation(screenSize.width / 2 - jFrame.getWidth() / 2, screenSize.height / 2 - jFrame.getHeight() / 2);
         jFrame.setVisible(true);
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -90,6 +91,7 @@ public class KeyloggerMenu implements NativeKeyListener {
 //        Scroll to the bottom of the table
         scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
     }
+
 
     public void nativeKeyReleased(NativeKeyEvent e) {
 //        This function is not used

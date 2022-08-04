@@ -12,7 +12,7 @@ public class StartPAMenu {
     private JButton startPrs;
     private JButton browseFile;
 
-    public StartPAMenu() {
+    public StartPAMenu(){
         jFrame = new JFrame("Start Process/Application");
         jFrame.setMinimumSize(new Dimension(500, 300));
         jFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

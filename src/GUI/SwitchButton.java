@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SwitchButton extends Component {
@@ -20,7 +19,6 @@ public class SwitchButton extends Component {
     }
 
     private boolean isOn; // true = on, false = off
-    private boolean isMouseDown; // true if mouse is down
     private final float speed = 1f;
     private java.util.List<SwitchEvenList> evens = new java.util.ArrayList<>();
 
@@ -62,29 +60,6 @@ public class SwitchButton extends Component {
                 }
             }
         });
-
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent me) {
-                if (SwingUtilities.isLeftMouseButton(me)) {
-                    if (isMouseDown) {
-                        isOn = !isOn;
-                        timer.start();
-                        runEvens();
-                    }
-                }
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent me) {
-                isMouseDown = true;
-            }
-
-            @Override
-            public void mouseExited(MouseEvent me) {
-                isMouseDown = false;
-            }
-        });
     }
 
     @Override
@@ -96,7 +71,7 @@ public class SwitchButton extends Component {
         int height = getHeight();
         float alpha = getAlpha();
 
-        if (alpha < 1){
+        if (alpha < 1) {
             g2.setColor(offColor);
             g2.fillRoundRect(0, 0, width, height, 30, 30);
         }
@@ -110,7 +85,7 @@ public class SwitchButton extends Component {
         super.paint(g);
     }
 
-//    Get the current state of the switch button.
+    //    Get the current state of the switch button.
     private float getAlpha() {
         float width = getWidth() - getHeight() + 2;
         float alpha = (location - 2) / width;
@@ -158,5 +133,13 @@ public class SwitchButton extends Component {
 
     public void setBorderColor(Color borderColor) {
         this.borderColor = borderColor;
+    }
+
+    public void Released(MouseEvent me) {
+        if (SwingUtilities.isLeftMouseButton(me)) {
+            isOn = !isOn;
+            timer.start();
+            runEvens();
+        }
     }
 }
