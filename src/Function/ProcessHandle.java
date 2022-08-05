@@ -50,14 +50,14 @@ public class ProcessHandle {
         return listProcess.contains(processName);
     }
 
-    public static boolean KillProcess(int processPID) {
+    public static boolean KillProcess(String processPID) {
         try {
 //            Run command and print to the console
-            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Stop-Process", "-Id", Integer.toString(processPID));
+            ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Stop-Process", "-Id", processPID);
             pb.start();
 //            Check if the process still running
             String listProcess = GetProcess();
-            return !listProcess.contains(Integer.toString(processPID));
+            return !listProcess.contains(processPID);
         } catch (
                 Exception e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class ProcessHandle {
 
     public static boolean StartProcess(String processName) {
         try {
-            String[] cmd = new String[]{"powershell.exe", "&'",  processName, "'"};
+            String[] cmd = new String[]{"powershell.exe", "&'", processName, "'"};
             ProcessBuilder pb = new ProcessBuilder(cmd);
             pb.start();
         } catch (IOException e) {

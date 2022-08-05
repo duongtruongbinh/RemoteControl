@@ -5,7 +5,7 @@ import Server.SendRecv;
 import javax.swing.*;
 import java.net.Socket;
 
-public class Client implements SendRecv {
+public class Client implements RecvSend {
 //    public static void main(String[] argv) throws Exception {
 //        String option;
 //        String data;
@@ -34,7 +34,7 @@ public class Client implements SendRecv {
 //
 //        } while (!option.equals("exit"));
 //    }
-
+    private StringBuilder ServerData = new StringBuilder();
     private Socket clientSocket = null;
 
     public Client(String host) {
@@ -57,7 +57,7 @@ public class Client implements SendRecv {
 
     public String receiveMess() {
         try {
-            return SendRecv.receiveMess(clientSocket);
+            return SendRecv.getMess(clientSocket);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return "";

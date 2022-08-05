@@ -64,7 +64,7 @@ public class StopPAMenu implements RecvSend {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 try {
                     RecvSend.sendMess(connect, "Stop");
-                    connect.close();
+                    jFrame.dispose();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -79,7 +79,7 @@ public class StopPAMenu implements RecvSend {
             RecvSend.sendMess(connect, "Process");
             String prs;
             do {
-                prs = RecvSend.receiveMess(connect);
+                prs = RecvSend.getMess(connect);
             }
             while (prs.equals(""));
             APList.setText(prs);
@@ -87,7 +87,7 @@ public class StopPAMenu implements RecvSend {
             RecvSend.sendMess(connect, "Application");
             String prs;
             do {
-                prs = RecvSend.receiveMess(connect);
+                prs = RecvSend.getMess(connect);
             }
             while (prs.equals(""));
             APList.setText(prs);
@@ -97,8 +97,9 @@ public class StopPAMenu implements RecvSend {
                 JOptionPane.showMessageDialog(null, "Please enter PID", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 RecvSend.sendMess(connect, "Kill");
+                System.out.println("Request: Kill " + pid);
                 RecvSend.sendMess(connect, pid);
-                String result = RecvSend.receiveMess(connect);
+                String result = RecvSend.getMess(connect);
                 if (result.equals("Success")) {
                     JOptionPane.showMessageDialog(null, "Kill process successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else {

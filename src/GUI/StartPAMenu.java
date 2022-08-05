@@ -49,6 +49,7 @@ public class StartPAMenu implements RecvSend {
             connect = new Socket(host, 6001);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can't connect to server", "Error", JOptionPane.ERROR_MESSAGE);
+            jFrame.dispose();
         }
 
         jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -56,7 +57,6 @@ public class StartPAMenu implements RecvSend {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 try {
                     RecvSend.sendMess(connect, "Stop");
-                    connect.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -72,24 +72,25 @@ public class StartPAMenu implements RecvSend {
 //            Check if path is an executable file
             if (path.toLowerCase().endsWith(".exe")) {
                 RecvSend.sendMess(connect, path);
-            }
-
-            label:
-            while (true) {
-                String mess = RecvSend.receiveMess(connect);
-                switch (mess) {
-                    case "Success" -> {
-                        JOptionPane.showMessageDialog(null, "Process started", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        break label;
-                    }
-                    case "Fail" -> {
-                        JOptionPane.showMessageDialog(null, "Process failed to start", "Error", JOptionPane.ERROR_MESSAGE);
-                        break label;
+                label:
+                while (true) {
+                    String mess = RecvSend.getMess(connect);
+                    switch (mess) {
+                        case "Success" -> {
+                            JOptionPane.showMessageDialog(null, "Process started", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            break label;
+                        }
+                        case "Fail" -> {
+                            JOptionPane.showMessageDialog(null, "Process failed to start", "Error", JOptionPane.ERROR_MESSAGE);
+                            break label;
+                        }
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "File is not an executable", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
             pathText.setText("");
+
         } else if (e.getSource() == browseFile) {
             Frame fileFrame = new Frame();
             FileDialog fd = new FileDialog(fileFrame, "Select File", FileDialog.LOAD);

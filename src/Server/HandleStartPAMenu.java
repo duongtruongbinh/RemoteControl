@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HandleStartPAMenu implements Runnable, SendRecv {
+    private StringBuilder sb = new StringBuilder();
     @Override
     public void run() {
         ServerSocket ss;
@@ -15,7 +16,7 @@ public class HandleStartPAMenu implements Runnable, SendRecv {
 
             String path;
             do {
-                path = SendRecv.receiveMess(s);
+                path = SendRecv.getMess(s);
                 if (!path.equals("")) {
                     if (ProcessHandle.StartProcess(path))
                         SendRecv.sendMess(s, "Success");

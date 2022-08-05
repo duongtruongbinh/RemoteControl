@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HandleStopPAMenu implements Runnable, SendRecv {
+    private StringBuilder sb = new StringBuilder();
+
     @Override
     public void run() {
         ServerSocket ss;
@@ -16,7 +18,7 @@ public class HandleStopPAMenu implements Runnable, SendRecv {
 
             String option;
             do {
-                option = SendRecv.receiveMess(s);
+                option = SendRecv.getMess(s);
                 System.out.println("Request:" + option);
                 if (option.equals("Application")) {
                     SendRecv.sendMess(s, ApplicationHandle.GetApplication());
@@ -25,8 +27,9 @@ public class HandleStopPAMenu implements Runnable, SendRecv {
                     SendRecv.sendMess(s, ProcessHandle.GetProcess());
                 }
                 if (option.equals("Kill")) {
-                    String processPID = SendRecv.receiveMess(s);
-                    if (ProcessHandle.KillProcess(Integer.getInteger(processPID))) {
+                    String processPID;
+                    processPID = SendRecv.getMess(s);
+                    if (ProcessHandle.KillProcess(processPID)) {
                         SendRecv.sendMess(s, "Success");
                     } else {
                         SendRecv.sendMess(s, "Fail");
