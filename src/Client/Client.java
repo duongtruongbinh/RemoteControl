@@ -34,7 +34,6 @@ public class Client implements RecvSend {
 //
 //        } while (!option.equals("exit"));
 //    }
-    private StringBuilder ServerData = new StringBuilder();
     private Socket clientSocket = null;
 
     public Client(String host) {

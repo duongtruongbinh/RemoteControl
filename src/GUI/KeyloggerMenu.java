@@ -29,6 +29,7 @@ public class KeyloggerMenu implements RecvSend {
 
         TableModel tableModel = new DefaultTableModel(data, columnNames);
         table = new JTable(tableModel);
+        table.setEnabled(false);
         table.setFillsViewportHeight(true);
 
         scrollPane = new JScrollPane(table);
@@ -82,13 +83,17 @@ public class KeyloggerMenu implements RecvSend {
         if (e.getSource() == startButton) {
 //            Start a new threat and call the keylogger
             RecvSend.sendMess(connect, "Start");
-            thread = new Thread(new UpdateTable());
-            thread.start();
+            if (thread == null) {
+                thread = new Thread(new UpdateTable());
+                thread.start();
+            }
         }
         if (e.getSource() == stopButton) {
 //            Stop the keylogger
-            RecvSend.sendMess(connect, "Stop");
-            thread.interrupt();
+            RecvSend.sendMess(connect, "Pause");
+            if (thread != null) {
+                thread.interrupt();
+            }
         }
     }
 
@@ -102,6 +107,7 @@ public class KeyloggerMenu implements RecvSend {
                     continue;
                 }
                 ((DefaultTableModel) table.getModel()).addRow(new Object[]{key, time});
+                scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
             }
         }
     }

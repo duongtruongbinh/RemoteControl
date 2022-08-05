@@ -145,7 +145,13 @@ public class MainMenu {
             }
         } else if (e.getSource() == scrShot) {
             if (client != null) {
-//                TODO: Send function to take a screenshot
+                client.sendMess("Screenshot");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                SwingUtilities.invokeLater(() -> new ScreenshotMenu(IpText.getText()));
             }
         } else if (e.getSource() == getKeyPress) {
             if (client != null) {
