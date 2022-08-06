@@ -152,7 +152,7 @@ public class MainMenu {
                     throw new RuntimeException(ex);
                 }
                 SwingUtilities.invokeLater(() -> new ScreenshotMenu(IpText.getText()));
-                String path = System.getProperty("user.dir") + "\\screenshot.png";
+                String path = System.getProperty("user.dir") + "\\screenshotT.png";
                 System.out.println(path);
                 ProcessBuilder pb = new ProcessBuilder("powershell.exe",path);
                 try {

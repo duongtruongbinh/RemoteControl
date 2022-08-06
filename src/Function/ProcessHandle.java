@@ -56,6 +56,7 @@ public class ProcessHandle {
             ProcessBuilder pb = new ProcessBuilder("powershell.exe", "Stop-Process", "-Id", processPID);
             pb.start();
 //            Check if the process still running
+            Thread.sleep(1000);
             String listProcess = GetProcess();
             return !listProcess.contains(processPID);
         } catch (
