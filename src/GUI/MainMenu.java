@@ -152,6 +152,15 @@ public class MainMenu {
                     throw new RuntimeException(ex);
                 }
                 SwingUtilities.invokeLater(() -> new ScreenshotMenu(IpText.getText()));
+                String path = System.getProperty("user.dir") + "\\screenshot.png";
+                System.out.println(path);
+                ProcessBuilder pb = new ProcessBuilder("powershell.exe",path);
+                try {
+                    pb.start();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Can't open image", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else if (e.getSource() == getKeyPress) {
             if (client != null) {
