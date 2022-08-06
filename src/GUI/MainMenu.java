@@ -160,7 +160,9 @@ public class MainMenu {
             }
         } else if (e.getSource() == shutDown) {
             if (client != null) {
-//                TODO: Send function to shut down
+                client.sendMess("Shutdown");
+                IpText.setText("");
+                client = null;
             }
         }
     }
